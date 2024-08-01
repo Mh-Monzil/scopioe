@@ -5,7 +5,20 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'lightBlue': '#D4E9FF',
+        'Blue': '#4285F3',
+        'deepBlue': '#156BCA',
+        'realBlack': '#152A16',
+        'Black1': '#2E3439',
+        'Black2': '#232F3C',
+        'lightAsh': '#5C635A'
+      },
+      fontFamily: {
+        'Poppins': "'Poppins', sans-serif"
+      }
+    },
   },
   plugins: [],
 }
