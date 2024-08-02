@@ -20,26 +20,38 @@ const SignUp = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const [overflow, setOverflow] = useState("");
+  const [position, setPosition] = useState("-left-[1024px]");
+  const [textHidden, setTextHidden] = useState("right-0");
+
+
+  const animateForm = () => {
+    console.log("animating");
+    setOverflow("overflow-y-visible")
+    setPosition("left-0")
+    setTextHidden("hidden")
+  }
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 py-0 lg:py-20 lg:px-10 xl:px-[120px] ">
+    <div className={`h-screen grid grid-cols-1 lg:grid-cols-2 py-0 lg:py-20 lg:px-10 xl:px-[120px] relative overflow-hidden ${overflow}`}>
       {/* left-part  */}
       <div
         style={{ backgroundImage: `url(${isSmallScreen ? bgImg : "none"})` }}
-        className="h-full w-full  bg-cover bg-no-repeat bg-center lg:pr-[122px]"
+        className="h-full w-full bg-cover bg-no-repeat bg-center lg:pr-[122px]"
       >
         <img src={logo} alt="" className="w-28 mx-auto lg:mx-0 pt-16 lg:pt-0 pb-6" />
-        <div className="hidden lg:block px-6 lg:px-0 pt-2 max-w-[430px] mx-0">
+        <div className={`${textHidden} lg:block px-6 lg:px-0 pt-2 max-w-[430px] mx-auto lg:mx-0`}>
           <h2 className="text-blueBlack text-[28px] lg:text-3xl font-semibold leading-normal text-center lg:text-left">
             Sign In To Your Account
           </h2>
-          <p className="text-darkAsh mx-auto font-normal leading-6 lg:leading-7 text-center py-3 lg:pb-0 lg:text-left ">
+          <p className="text-lightAsh lg:text-darkAsh mx-auto font-normal leading-6 lg:leading-7 text-center py-3 lg:pb-0 lg:text-left ">
             Welcome Back! By click the sign up button, you&#39;re agree to
             Zenitood Terms and Service and acknowledge the{" "}
             <span className="text-Blue underline">Privacy and Policy</span>
           </p>
         </div>
-        <div className="hidden text-center text-[22px] leading-[35px] max-w-[341px] mx-auto px-[35px] py-[30px] mt-20 bg-[#1F2833] opacity-70 rounded-[10px]">
-          <span className="text-deepBlue  font-semibold  block">
+        <div className={`${textHidden} text-center text-[22px] leading-[35px] max-w-[341px] mx-auto px-[35px] py-[30px] mt-20 bg-[#1F2833] opacity-70 rounded-[10px]`}>
+          <span onClick={() => animateForm()} className="text-deepBlue font-semibold block cursor-pointer">
             Create Account
           </span>
           <span className="text-[#FFF] font-medium block">
@@ -48,13 +60,13 @@ const SignUp = () => {
         </div>
 
         {/* animated div  */}
-        <div>
-          <div className="lg:hidden text-center text-[#FFF] text-lg leading-normal">
+        <div id className={`absolute w-full top-32 ${position} lg:static duration-500 transition-all ease-in-out`}>
+          <div className=" lg:hidden text-center text-[#FFF] text-lg leading-normal">
             <span className="block font-semibold">Create Account</span>
             <span className="block font-medium">Fill in Your Information</span>
           </div>
 
-          <div className="w-full min-h-[680px] bg-[#FFF] rounded-t-[40px] mt-20 lg:mt-10">
+          <div className=" w-full min-h-[680px] bg-[#FFF] rounded-t-[40px] mt-20 lg:mt-10">
             <h3 className="lg:hidden text-blueBlack text-[28px] font-semibold leading-normal pt-8 text-center">
               Sign Up
             </h3>
