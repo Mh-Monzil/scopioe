@@ -10,10 +10,12 @@ export default {
         'lightBlue': '#D4E9FF',
         'Blue': '#4285F3',
         'deepBlue': '#156BCA',
+        'blueBlack': '#1A2531',
         'realBlack': '#152A16',
         'Black1': '#2E3439',
         'Black2': '#232F3C',
-        'lightAsh': '#5C635A'
+        'darkAsh': '#5C635A',
+        'lightAsh': '#D1D1D1',
       },
       fontFamily: {
         'Poppins': "'Poppins', sans-serif"
