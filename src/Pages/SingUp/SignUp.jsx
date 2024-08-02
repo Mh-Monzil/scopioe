@@ -29,10 +29,10 @@ const SignUp = () => {
       >
         <img src={logo} alt="" className="w-28 mx-auto lg:mx-0 pt-16 lg:pt-0 pb-6" />
         <div className="hidden lg:block px-6 lg:px-0 pt-2 max-w-[430px] mx-0">
-          <h2 className="text-blueBlack text-[28px] font-semibold leading-normal text-center lg:text-left">
+          <h2 className="text-blueBlack text-[28px] lg:text-3xl font-semibold leading-normal text-center lg:text-left">
             Sign In To Your Account
           </h2>
-          <p className="text-darkAsh mx-auto font-normal leading-6 text-center py-3 lg:pb-0 lg:text-left ">
+          <p className="text-darkAsh mx-auto font-normal leading-6 lg:leading-7 text-center py-3 lg:pb-0 lg:text-left ">
             Welcome Back! By click the sign up button, you&#39;re agree to
             Zenitood Terms and Service and acknowledge the{" "}
             <span className="text-Blue underline">Privacy and Policy</span>
@@ -157,7 +157,7 @@ const SignUp = () => {
       {/* right part  */}
       <div
         style={{ backgroundImage: `url(${bgLarge})` }}
-        className="hidden bg-no-repeat bg-center bg-cover lg:flex justify-center items-center h-[800px] 2xl:w-[648px] rounded-2xl"
+        className="hidden bg-no-repeat bg-center bg-cover lg:flex justify-center items-center h-full 2xl:w-[648px] rounded-2xl"
       >
         <div className=" text-center text-[22px] leading-[35px] max-w-[341px] mx-auto px-[35px] py-[30px] mt-20 bg-[#1F2833] opacity-70 rounded-[10px]">
           <span className="text-deepBlue  font-semibold  block">
