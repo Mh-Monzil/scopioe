@@ -3,9 +3,15 @@ import bgImg from "../../assets/images/login-bg.png";
 import bgLarge from "../../assets/images/login-large.png";
 import logo from "../../assets/images/LOGO.png";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+  const [overflow, setOverflow] = useState("");
+  const [position, setPosition] = useState("-left-[1024px]");
+  const [textHidden, setTextHidden] = useState("right-0");
+  const [isVisible, setIsVisible] = useState(false);
+  const [isVisibleConfirm, setIsVisibleConfirm] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -20,27 +26,37 @@ const SignUp = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const [overflow, setOverflow] = useState("");
-  const [position, setPosition] = useState("-left-[1024px]");
-  const [textHidden, setTextHidden] = useState("right-0");
-
-
   const animateForm = () => {
-    console.log("animating");
-    setOverflow("overflow-y-visible")
-    setPosition("left-0")
-    setTextHidden("hidden")
+    setOverflow("overflow-y-visible");
+    setPosition("left-0");
+    setTextHidden("hidden");
+  };
+
+  const togglePassword = () => {
+    setIsVisible(!isVisible)
+  }
+  const toggleConfirmPassword = () => {
+    setIsVisibleConfirm(!isVisibleConfirm)
   }
 
   return (
-    <div className={`h-screen grid grid-cols-1 lg:grid-cols-2 py-0 lg:py-20 lg:px-10 xl:px-[120px] relative overflow-hidden ${overflow}`}>
+    <div
+      className={`min-h-screen grid grid-cols-1 lg:grid-cols-2 py-0 lg:py-20 lg:px-10 xl:px-[120px] relative overflow-hidden lg:overflow-visible ${overflow}`}
+    >
       {/* left-part  */}
       <div
         style={{ backgroundImage: `url(${isSmallScreen ? bgImg : "none"})` }}
         className="h-full w-full bg-cover bg-no-repeat bg-center lg:pr-[122px]"
       >
-        <img src={logo} alt="" className="w-28 mx-auto lg:mx-0 pt-16 lg:pt-0 pb-6" />
-        <div className={`${textHidden} lg:block px-6 lg:px-0 pt-2 max-w-[430px] mx-auto lg:mx-0`}>
+        {/* logo  */}
+        <img
+          src={logo}
+          alt=""
+          className="w-28 mx-auto lg:mx-0 pt-16 lg:pt-0 pb-6"
+        />
+        <div
+          className={`${textHidden} lg:block px-6 lg:px-0 pt-2 max-w-[430px] mx-auto lg:mx-0`}
+        >
           <h2 className="text-blueBlack text-[28px] lg:text-3xl font-semibold leading-normal text-center lg:text-left">
             Sign In To Your Account
           </h2>
@@ -50,8 +66,13 @@ const SignUp = () => {
             <span className="text-Blue underline">Privacy and Policy</span>
           </p>
         </div>
-        <div className={`${textHidden} text-center text-[22px] leading-[35px] max-w-[341px] mx-auto px-[35px] py-[30px] mt-20 bg-[#1F2833] opacity-70 rounded-[10px]`}>
-          <span onClick={() => animateForm()} className="text-deepBlue font-semibold block cursor-pointer">
+        <div
+          className={`${textHidden} text-center text-[22px] leading-[35px] max-w-[341px] mx-auto px-[35px] py-[30px] mt-20 bg-[#1F2833] opacity-70 rounded-[10px]`}
+        >
+          <span
+            onClick={() => animateForm()}
+            className="text-deepBlue font-semibold block cursor-pointer"
+          >
             Create Account
           </span>
           <span className="text-[#FFF] font-medium block">
@@ -60,7 +81,10 @@ const SignUp = () => {
         </div>
 
         {/* animated div  */}
-        <div id className={`absolute w-full top-32 ${position} lg:static duration-500 transition-all ease-in-out`}>
+        <div
+          id
+          className={`absolute w-full top-32 ${position} lg:static duration-500 transition-all ease-in-out`}
+        >
           <div className=" lg:hidden text-center text-[#FFF] text-lg leading-normal">
             <span className="block font-semibold">Create Account</span>
             <span className="block font-medium">Fill in Your Information</span>
@@ -71,6 +95,7 @@ const SignUp = () => {
               Sign Up
             </h3>
 
+            {/* form  */}
             <form className="p-4 lg:p-0 space-y-6">
               {/* name  */}
               <div>
@@ -115,15 +140,15 @@ const SignUp = () => {
                   Password
                 </label>
                 <input
-                  type="password"
+                  type={`${isVisible ? "text" : "password"}`}
                   name="password"
                   id="password"
                   placeholder="Enter your password"
                   className="p-5  block w-full border-[0.7px] border-[#E7E7E7] rounded-[10px] mt-3 focus:outline-Blue font-medium text-realBlack placeholder:text-darkAsh placeholder:font-normal
               "
                 />
-                <LuEye className="text-2xl text-darkAsh absolute right-3 bottom-[21px]" />
-                <LuEyeOff className="hidden text-2xl text-darkAsh absolute right-3 bottom-[21px]" />
+                <LuEye onClick={() => togglePassword(!isVisible)} className={`${isVisible ? "visible" : "hidden"} text-2xl text-darkAsh absolute right-3 bottom-[21px] cursor-pointer`} />
+                <LuEyeOff onClick={() => togglePassword(!isVisible)} className={`${isVisible ? "hidden" : "visible"} text-2xl text-darkAsh absolute right-3 bottom-[21px] cursor-pointer`} />
               </div>
               {/* confirm password  */}
               <div className="relative">
@@ -134,15 +159,15 @@ const SignUp = () => {
                   Confirm Password
                 </label>
                 <input
-                  type="password"
+                  type={`${isVisibleConfirm ? "text" : "password"}`}
                   name="confirmPassword"
                   id="confirmPassword"
                   placeholder="Re-type password"
                   className="p-5  block w-full border-[0.7px] border-[#E7E7E7] rounded-[10px] mt-3 focus:outline-Blue font-medium text-realBlack placeholder:text-darkAsh placeholder:font-normal
               "
                 />
-                <LuEye className="hidden text-2xl text-darkAsh absolute right-3 bottom-[21px]" />
-                <LuEyeOff className="text-2xl text-darkAsh absolute right-3 bottom-[21px]" />
+                <LuEye onClick={() => toggleConfirmPassword(!isVisibleConfirm)} className={`${isVisibleConfirm ? "visible" : "hidden"} text-2xl text-darkAsh absolute right-3 bottom-[21px] cursor-pointer`} />
+                <LuEyeOff onClick={() => toggleConfirmPassword(!isVisibleConfirm)} className={`${isVisibleConfirm ? "hidden" : "visible"} text-2xl text-darkAsh absolute right-3 bottom-[21px] cursor-pointer`} />
               </div>
               <div className="flex items-center gap-2">
                 <input type="checkbox" />
@@ -156,9 +181,12 @@ const SignUp = () => {
                 </button>
                 <p className="text-realBlack font-normal leading-6">
                   Already Have an Account?{" "}
-                  <span className="text-deepBlue underline font-medium ">
+                  <Link
+                    to="/sign-in"
+                    className="text-deepBlue underline font-medium "
+                  >
                     Log in
-                  </span>
+                  </Link>
                 </p>
               </div>
             </form>

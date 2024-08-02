@@ -18,7 +18,8 @@ export default {
         'lightAsh': '#D1D1D1',
       },
       fontFamily: {
-        'Poppins': "'Poppins', sans-serif"
+        'Poppins': "'Poppins', sans-serif",
+        'Lexend': "'Lexend', sans-serif",
       }
     },
   },
