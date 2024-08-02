@@ -10,6 +10,7 @@ export default {
         'lightBlue': '#D4E9FF',
         'Blue': '#4285F3',
         'deepBlue': '#156BCA',
+        'navyBlue': '#102C4A',
         'blueBlack': '#1A2531',
         'realBlack': '#152A16',
         'Black1': '#2E3439',
