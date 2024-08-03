@@ -6,7 +6,7 @@ const MobileSidebar = ({ toggleMenu, position, setPosition }) => {
   return (
     <div
       className={`w-[270px] md:hidden absolute ${
-        position ? "right-0" : "-right-72"
+        position ? "right-0" : "-right-96"
       } top-0 z-10 transition-all duration-300 ease-in-out`}
     >
       <IoClose
