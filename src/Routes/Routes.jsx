@@ -9,6 +9,7 @@ import Search from "../Pages/Search/Search";
 import Favorites from "../Pages/Favorites/Favorites";
 import HelpCenter from "../Pages/HelpCenter/HelpCenter";
 import Settings from "../Pages/Settings/Settings";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -17,11 +18,19 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        ),
       },
       {
         path: "new-listing",
-        element: <NewListings />,
+        element: (
+          <PrivateRoute>
+            <NewListings />
+          </PrivateRoute>
+        ),
       },
       {
         path: "search",

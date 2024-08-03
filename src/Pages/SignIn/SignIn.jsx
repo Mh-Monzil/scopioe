@@ -5,9 +5,15 @@ import logo from "../../assets/images/LOGO.png";
 import { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import UseAuth from "../../hooks/UseAuth";
 
 const SignIn = () => {
+  const { signInWithGoogle, loginUser } = UseAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || "/";
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -27,6 +33,34 @@ const SignIn = () => {
   const togglePassword = () => {
     setIsVisible(!isVisible);
   };
+
+  // google sign in
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle();
+      toast.success("Sign In Successful");
+      navigate(from, { replace: true });
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value
+
+    try {
+      await loginUser(email, password)
+      toast.success("Sign In Successful");
+      navigate(from, { replace: true });
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+    
+  }
 
   return (
     <div
@@ -64,15 +98,16 @@ const SignIn = () => {
 
             <div className="flex items-center justify-center flex-shrink-0 gap-10 mt-16 lg:mt-10">
               <div
+                onClick={handleGoogleSignIn}
                 style={{
                   boxShadow: "0px 4px 7px 0px rgba(131, 131, 131, 0.23)",
                 }}
-                className="flex items-center justify-center gap-2 py-3 min-w-[146px] rounded-md bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF] "
+                className="flex items-center justify-center gap-2 py-3 min-w-[146px] rounded-md bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF] cursor-pointer"
               >
                 <FcGoogle className="text-2xl" />
                 <span>Google</span>
               </div>
-              <div className="flex items-center justify-center gap-2 py-3 min-w-[146px] rounded-md bg-gradient-to-r from-[#298FFF] to-[#0778F5] text-[#FFF] font-Lexend">
+              <div className="flex items-center justify-center gap-2 py-3 min-w-[146px] rounded-md bg-gradient-to-r from-[#298FFF] to-[#0778F5] text-[#FFF] font-Lexend cursor-pointer">
                 <FaFacebookF className="text-xl" />
                 <span className="">Facebook</span>
               </div>
@@ -84,7 +119,7 @@ const SignIn = () => {
               </p>
             </div>
 
-            <form className="mt-16 lg:mt-10 px-4 lg:p-0 space-y-6">
+            <form onSubmit={handleSubmit} className="mt-16 lg:mt-10 px-4 lg:p-0 space-y-6">
               {/* email  */}
               <div>
                 <label
@@ -143,9 +178,7 @@ const SignIn = () => {
                 </p>
               </div>
               <div className="flex flex-col items-center space-y-3 pt-10">
-                <button className="w-[271px] text-[#FFF] font-medium leading-normal px-10 py-4 bg-Blue rounded-[10px] active:bg-deepBlue">
-                  Sign in
-                </button>
+                <input type="submit" value={"Sign in"} className="w-[271px] text-[#FFF] font-medium leading-normal px-10 py-4 bg-Blue rounded-[10px] active:bg-deepBlue" />
                 <p className="text-[#142D3A] text-[14px] font-normal leading-[14px] tracking-[0.28px] pb-12">
                   Don’t Have an Account?{" "}
                   <Link

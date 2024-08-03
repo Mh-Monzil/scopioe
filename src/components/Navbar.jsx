@@ -6,8 +6,10 @@ import logo from "../assets/images/LOGO.png";
 import { HiMenuAlt3 } from "react-icons/hi";
 import MobileSidebar from "./MobileSidebar";
 import { useState } from "react";
+import UseAuth from "../hooks/UseAuth";
 
 const Navbar = () => {
+  const {logOut} = UseAuth();
   const [position, setPosition] = useState(false)
 
   const toggleMenu = () => {
@@ -45,7 +47,7 @@ const Navbar = () => {
         <div onClick={() => toggleMenu()} className="block md:hidden">
           <HiMenuAlt3 className="text-2xl cursor-pointer" />
         </div>
-        <div className="hidden md:flex items-center gap-[10px] border-l-[1px] border-l-[#E7E7E7] pl-5">
+        <div onClick={logOut} className="hidden md:flex items-center gap-[10px] border-l-[1px] border-l-[#E7E7E7] pl-5 cursor-pointer">
           <span className="text-[#F15E4A] text-[15px] font-medium leading-normal tracking-[0.3px]">
             Log Out
           </span>

@@ -3,9 +3,15 @@ import bgImg from "../../assets/images/login-bg.png";
 import bgLarge from "../../assets/images/login-large.png";
 import logo from "../../assets/images/LOGO.png";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import UseAuth from "../../hooks/UseAuth";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
+  const {createUser} = UseAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || "/";
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
   const [overflow, setOverflow] = useState("");
   const [position, setPosition] = useState("-left-[1024px]");
@@ -15,6 +21,7 @@ const SignUp = () => {
 
   useEffect(() => {
     const handleResize = () => {
+
       setIsSmallScreen(window.innerWidth < 1024);
       console.log(window.innerWidth, window.innerHeight);
     };
@@ -37,6 +44,26 @@ const SignUp = () => {
   }
   const toggleConfirmPassword = () => {
     setIsVisibleConfirm(!isVisibleConfirm)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const confirmPassword = e.target.confirmPassword.value;
+
+    if(password == confirmPassword){
+      
+      try {
+        await createUser(email, password)
+        toast.success("Sign up Successful");
+        navigate(from, { replace: true });
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      }
+    }
+
   }
 
   return (
@@ -96,7 +123,7 @@ const SignUp = () => {
             </h3>
 
             {/* form  */}
-            <form className="p-4 lg:p-0 space-y-6">
+            <form onSubmit={handleSubmit} className="p-4 lg:p-0 space-y-6">
               {/* name  */}
               <div>
                 <label
@@ -176,9 +203,8 @@ const SignUp = () => {
                 </span>
               </div>
               <div className="flex flex-col items-center space-y-3 pt-10">
-                <button className="w-[271px] text-[#FFF] font-medium leading-normal px-10 py-4 bg-Blue rounded-[10px] active:bg-deepBlue">
-                  Sign up
-                </button>
+                <input type="submit" className="w-[271px] text-[#FFF] font-medium leading-normal px-10 py-4 bg-Blue rounded-[10px] active:bg-deepBlue" />
+                  
                 <p className="text-realBlack font-normal leading-6">
                   Already Have an Account?{" "}
                   <Link
