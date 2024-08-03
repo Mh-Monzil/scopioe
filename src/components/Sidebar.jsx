@@ -4,15 +4,16 @@ import logo from "../assets/images/LOGO.png";
 import { MdOutlineWindow } from "react-icons/md";
 import { FiUsers } from "react-icons/fi";
 import { GrStatusInfo } from "react-icons/gr";
-import { CiHeart, CiSearch } from "react-icons/ci";
 import { FaRegFileAlt, FaRegHeart } from "react-icons/fa";
 
 const Sidebar = ({ isActive, handleToggle }) => {
   return (
-    <div className=" min-w-[250px] flex flex-col">
+    <div className=" min-w-[250px] border-x-[1px] border-[#E7E7E7] flex flex-col">
       <div className=" flex items-center justify-between">
         {/* logo  */}
-        <img src={logo} alt="" className="mx-auto md:mt-16" />
+        <Link to={'/'} className="mx-auto md:mt-14">
+          <img src={logo} alt=""  />
+        </Link>
         {/* <IoClose onClick={handleToggle} className="md:hidden text-4xl text-black" /> */}
       </div>
 
@@ -25,7 +26,9 @@ const Sidebar = ({ isActive, handleToggle }) => {
             to="/"
             className={({ isActive }) =>
               `flex items-center gap-[14px] py-[14px] pl-[25px] border-l-[3px] border-transparent ${
-                isActive ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium" : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
+                isActive
+                  ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium"
+                  : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
               }`
             }
           >
@@ -38,7 +41,9 @@ const Sidebar = ({ isActive, handleToggle }) => {
             to="/new-listing"
             className={({ isActive }) =>
               `flex items-center gap-[14px] py-[14px] pl-[25px] border-l-[3px] border-transparent  ${
-                isActive ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium" : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
+                isActive
+                  ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium"
+                  : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
               }`
             }
           >
@@ -51,7 +56,9 @@ const Sidebar = ({ isActive, handleToggle }) => {
             to="/search"
             className={({ isActive }) =>
               `flex items-center gap-[14px] py-[14px] pl-[25px] border-l-[3px] border-transparent ${
-                isActive ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium" : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
+                isActive
+                  ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium"
+                  : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
               }`
             }
           >
@@ -64,7 +71,9 @@ const Sidebar = ({ isActive, handleToggle }) => {
             to="/about"
             className={({ isActive }) =>
               `flex items-center gap-[14px] py-[14px] pl-[25px] border-l-[3px] border-transparent ${
-                isActive ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium" : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
+                isActive
+                  ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium"
+                  : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
               }`
             }
           >
@@ -77,7 +86,9 @@ const Sidebar = ({ isActive, handleToggle }) => {
             to="/favorites"
             className={({ isActive }) =>
               `flex items-center gap-[14px] py-[14px] pl-[25px] border-l-[3px] border-transparent ${
-                isActive ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium" : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
+                isActive
+                  ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium"
+                  : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
               }`
             }
           >
@@ -90,7 +101,9 @@ const Sidebar = ({ isActive, handleToggle }) => {
             to="/help-center"
             className={({ isActive }) =>
               `flex items-center gap-[14px] py-[14px] pl-[25px] border-l-[3px] border-transparent ${
-                isActive ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium" : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
+                isActive
+                  ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium"
+                  : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
               }`
             }
           >
@@ -103,14 +116,15 @@ const Sidebar = ({ isActive, handleToggle }) => {
             to="/settings"
             className={({ isActive }) =>
               `flex items-center gap-[14px] py-[14px] pl-[25px] border-l-[3px] border-transparent ${
-                isActive ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium" : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
+                isActive
+                  ? "bg-lightBlue text-realBlack border-l-navyBlue font-medium"
+                  : "text-darkAsh text-[15px] font-normal leading-normal tracking-[0.3px]"
               }`
             }
           >
             <IoSettingsOutline className="text-lg" />
             <span className="">Settings</span>
           </NavLink>
-
         </nav>
       </div>
     </div>
