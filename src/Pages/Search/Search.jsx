@@ -2,7 +2,7 @@
 
 const Search = () => {
     return (
-        <div>
+        <div className="min-h-screen">
             Search
         </div>
     );

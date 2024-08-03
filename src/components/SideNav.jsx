@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 const SideNav = () => {
   return (
-    <div>
+    <div className="bg-[#FFF] pt-[18px] pr-4">
       <nav className="w-full">
         {/* home  */}
         <NavLink

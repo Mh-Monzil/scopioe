@@ -2,7 +2,7 @@
 
 const HelpCenter = () => {
     return (
-        <div>
+        <div className="min-h-screen">
             HelpCenter
         </div>
     );
