@@ -1,14 +1,23 @@
 import { IoIosArrowDown } from "react-icons/io";
 import loggedUser from "../assets/User/loggedUser.svg";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { CiLogin } from "react-icons/ci";
 import { CgLogOut } from "react-icons/cg";
+import logo from "../assets/images/LOGO.png";
+import { HiMenuAlt3 } from "react-icons/hi";
+import MobileSidebar from "./MobileSidebar";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [position, setPosition] = useState(false)
+
+  const toggleMenu = () => {
+    setPosition(!position)
+  };
+
   return (
-    <div className="bg-[#FFF] border-b-[1px] border-[#E7E7E7] min-h-[60px] md:min-h-[88px] flex items-center justify-between">
-      {/* left  */}
-      <div className="flex items-center gap-3 py-6 pl-[30px]">
+    <div className="bg-[#FFF] border-b-[1px] border-[#E7E7E7] min-h-[60px] md:min-h-[88px] flex items-center justify-between px-[18px] md:px-[30px] ">
+      {/*desktop left  */}
+      <div className="hidden md:flex items-center gap-3 py-6 ">
         <img src={loggedUser} alt="" className="w-10 h-10" />
         <div className="flex flex-col">
           <div className="flex items-center justify-between">
@@ -23,12 +32,20 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* mobile left  */}
+      <div className="md:hidden">
+        <img src={logo} alt="" className="w-[88px]" />
+      </div>
+
       {/* right  */}
       <div className="flex items-center h-10">
-        <div className="rounded-full border-[1px] mr-5">
+        <div className="rounded-full md:border-[1px] mr-2 md:mr-5">
           <IoNotificationsOutline className="text-[21px]  m-2" />
         </div>
-        <div className="flex items-center gap-[10px] border-l-[1px] border-l-[#E7E7E7] pl-5">
+        <div onClick={() => toggleMenu()} className="block md:hidden">
+          <HiMenuAlt3 className="text-2xl cursor-pointer" />
+        </div>
+        <div className="hidden md:flex items-center gap-[10px] border-l-[1px] border-l-[#E7E7E7] pl-5">
           <span className="text-[#F15E4A] text-[15px] font-medium leading-normal tracking-[0.3px]">
             Log Out
           </span>
@@ -37,6 +54,10 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+
+      {/* mobile nav  */}
+      <MobileSidebar toggleMenu={toggleMenu} position={position} setPosition={setPosition}  />
     </div>
   );
 };

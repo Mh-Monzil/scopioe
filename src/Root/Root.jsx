@@ -10,10 +10,10 @@ const Root = () => {
   };
 
   return (
-    <div className="font-Poppins max-w-[1440px] mx-auto flex">
+    <div className="font-Poppins max-w-[1440px] mx-auto flex relative overflow-x-hidden">
       <Sidebar isActive={isActive} handleToggle={handleToggle} />
       <div
-        className={`flex-1 `}
+        className="flex-1"
       >
         <Navbar />
         <Outlet />
